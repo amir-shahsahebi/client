@@ -4,4 +4,4 @@ const connectDB = (url) => {
   return mongoose.connect(url);
 };
 
-MediaQueryList.exports = connectDB;
+module.exports = connectDB;
