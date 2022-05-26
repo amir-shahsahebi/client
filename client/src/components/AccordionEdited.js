@@ -3,15 +3,19 @@ import { Accordion, Button } from "react-bootstrap";
 import { deleteTodo, updateTodo } from "../apis/toDoApi";
 import { useNavigate } from "react-router-dom";
 import ModalEdited from "./ModalEdited";
-const AccordionEdited = ({ allToDoes }) => {
+const AccordionEdited = ({ allToDoes, term }) => {
   const navigate = useNavigate();
   const handleDelete = (id) => {
     deleteTodo(id);
     navigate(0);
   };
+  // console.log(term);
   const accordionList =
     allToDoes &&
     allToDoes
+      .filter((todo) =>
+        term ? todo.title.includes(term) || todo.task.includes(term) : todo
+      )
       .filter((todo) => todo.status !== "yes")
       .map((toDo, index) => {
         const defferTime = () => {
@@ -41,7 +45,6 @@ const AccordionEdited = ({ allToDoes }) => {
           if (diffInHours < 1)
             return `remaining time: about ${diffInMinutes} minutes`;
         };
-        console.log(toDo);
         const calculatedDiffTime = defferTime();
         const addedDate = new Date(Number(toDo.addedTime)).toLocaleString();
         return (

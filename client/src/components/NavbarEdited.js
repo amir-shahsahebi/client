@@ -9,8 +9,7 @@ import {
 } from "react-bootstrap";
 import ModalEdited from "./ModalEdited";
 
-const NavbarEdited = () => {
-  const [term, setTerm] = useState("");
+const NavbarEdited = ({ handleInput }) => {
   const TodoCurrent = {
     title: "",
     task: "",
@@ -41,16 +40,14 @@ const NavbarEdited = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/history">History</Nav.Link>
             </Nav>
-            <Form className="d-flex" onSubmit={(e) => console.log(e.target)}>
+            <Form className="d-flex">
               <FormControl
+                onChange={(e) => handleInput(e.target.value)}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button type="submit" variant="outline-success">
-                Search
-              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>

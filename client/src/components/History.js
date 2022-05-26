@@ -3,7 +3,7 @@ import { Accordion, Button } from "react-bootstrap";
 import { deleteTodo, updateTodo } from "../apis/toDoApi";
 import { useNavigate } from "react-router-dom";
 import ModalEdited from "./ModalEdited";
-const History = ({ allToDoes }) => {
+const History = ({ allToDoes, term }) => {
   const navigate = useNavigate();
   const handleDelete = (id) => {
     deleteTodo(id);
@@ -12,9 +12,12 @@ const History = ({ allToDoes }) => {
   const accordionList =
     allToDoes &&
     allToDoes
+      .filter((todo) =>
+        term ? todo.title.includes(term) || todo.task.includes(term) : todo
+      )
       .filter((todo) => todo.status === "yes")
       .map((toDo, index) => {
-        console.log(toDo);
+        // console.log(toDo);
         const addedDate = new Date(Number(toDo.addedTime)).toLocaleString();
         return (
           <Accordion.Item

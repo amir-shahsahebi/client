@@ -9,15 +9,25 @@ import History from "./components/History";
 
 function App() {
   const [allToDoes, setAllToDoes] = useState([]);
+  const [term, setTerm] = useState("");
+  const handleInput = (term) => {
+    setTerm(term);
+  };
   useEffect(() => {
     getAllToDoes().then(({ data }) => setAllToDoes(data.toDoes));
   }, []);
   return (
     <Router>
-      <NavbarEdited />
+      <NavbarEdited handleInput={handleInput} />
       <Routes>
-        <Route path="/" element={<AccordionEdited allToDoes={allToDoes} />} />
-        <Route path="/history" element={<History allToDoes={allToDoes} />} />
+        <Route
+          path="/"
+          element={<AccordionEdited allToDoes={allToDoes} term={term} />}
+        />
+        <Route
+          path="/history"
+          element={<History allToDoes={allToDoes} term={term} />}
+        />
       </Routes>
     </Router>
   );
