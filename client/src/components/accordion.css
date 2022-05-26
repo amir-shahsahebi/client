@@ -3,21 +3,39 @@
 }
 
 .edit {
+  color: aquamarine;
   position: absolute;
-  right: 110px;
-  top: 9px;
+  right: 80px;
+  top: 15px;
   z-index: 5;
 }
 .delete {
+  color: rgb(168, 32, 32);
   position: absolute;
-  right: 45px;
-  top: 9px;
+  right: 50px;
+  top: 20px;
   z-index: 5;
 }
 .star {
+  cursor: pointer;
   position: absolute;
-  right: 145px;
-  top: 9px;
+  right: 115px;
+  top: 14px;
+  z-index: 5;
+}
+.star2 {
+  cursor: pointer;
+  position: absolute;
+  right: 76px;
+  top: 14px;
+  z-index: 5;
+}
+.completed {
+  cursor: pointer;
+  position: absolute;
+  color: green;
+  right: 147px;
+  top: 20px;
   z-index: 5;
 }
 
@@ -25,4 +43,8 @@
   margin-top: 10px;
   font-weight: 100;
   font-size: small;
+}
+
+.bold {
+  font-weight: bold;
 }

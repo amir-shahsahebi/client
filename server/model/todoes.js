@@ -4,9 +4,9 @@ const ToDoesSchema = new mongoose.Schema({
   title: String,
   task: String,
   favorite: String,
-  addedTime: String,
-  finishTime: String,
-  status: Number,
+  addedTime: Number,
+  finishTime: Number,
+  status: String,
 });
 
 module.exports = mongoose.model("ToDoes", ToDoesSchema);

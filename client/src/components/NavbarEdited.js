@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Container,
@@ -9,13 +10,14 @@ import {
 import ModalEdited from "./ModalEdited";
 
 const NavbarEdited = () => {
+  const [term, setTerm] = useState("");
   const TodoCurrent = {
     title: "",
     task: "",
     favorite: "",
     addedTime: null,
     finishTime: null,
-    status: "",
+    status: "no",
   };
   return (
     <div>
@@ -29,8 +31,6 @@ const NavbarEdited = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">History</Nav.Link>
               <ModalEdited
                 TodoCurrent={TodoCurrent}
                 text="Add new Todo"
@@ -38,15 +38,19 @@ const NavbarEdited = () => {
                 size="sm"
                 newTodo={true}
               />
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/history">History</Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={(e) => console.log(e.target)}>
               <FormControl
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button type="submit" variant="outline-success">
+                Search
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>

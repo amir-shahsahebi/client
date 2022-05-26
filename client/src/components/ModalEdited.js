@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { updateTodo } from "../apis/toDoApi";
 import { createTodo } from "../apis/toDoApi";
-import Timer from "./Timer";
 
-function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
+function ModalEdited({ text, variant, size, TodoCurrent, newTodo, icon }) {
   const navigate = useNavigate();
   const [toDo, setTodo] = useState({ TodoCurrent });
   const [show, setShow] = useState(false);
@@ -14,21 +13,29 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
     hours: 0,
     minutes: 0,
   });
+  useEffect(() => {
+    // console.log(time);
+
+    handleTime(time);
+    // console.log(toDo);
+  }, [time]);
   // newTodo && setTodo({ ...toDo, startedTime: Date.now() });
 
-  const handleTime = (timer) => {
-    if (timer.days === 0 && !time.hours === 0 && !time.days === 0) {
-      console.log("nothing");
-      return;
-    }
+  const handleTime = (time) => {
+    // if (timer.days === 0 && time.hours === 0 && time.days === 0) {
+    //   console.log("nothing");
+    //   return;
+    // }
     const days = time.days ? time.days : 0;
-    const hours = time.days ? time.hours : 0;
-    const minutes = time.days ? time.days : 0;
+    const hours = time.hours ? time.hours : 0;
+    const minutes = time.minutes ? time.minutes : 0;
     const calculatedTime =
       (Number(days) * 24 * 60 + Number(hours) * 60 + Number(minutes)) *
-        60 *
-        1000 +
-      Date.now();
+      60 *
+      1000;
+    // const currentTime = Date.now();
+    // const finishedTime = calculatedTime + currentTime;
+    // console.log("calculated time =", calculatedTime);
     setTodo({ ...toDo, finishTime: calculatedTime });
   };
 
@@ -36,6 +43,7 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
   const handleClose = () => setShow(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleTime(time);
     console.log(toDo);
     newTodo && createTodo(toDo);
     !newTodo && updateTodo(TodoCurrent._id, toDo);
@@ -46,9 +54,13 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
 
   return (
     <>
-      <Button variant={variant} size={size} onClick={handleShow}>
-        {text}
-      </Button>
+      {text ? (
+        <Button variant={variant} size={size} onClick={handleShow}>
+          {text}
+        </Button>
+      ) : (
+        <span onClick={handleShow}>{icon}</span>
+      )}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -96,7 +108,7 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
                   <Form.Control
                     onChange={(e) => {
                       setTime({ ...time, days: e.target.value });
-                      handleTime(time);
+                      // handleTime(time);
                     }}
                     placeholder="Days"
                   />
@@ -105,7 +117,7 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
                   <Form.Control
                     onChange={(e) => {
                       setTime({ ...time, hours: e.target.value });
-                      handleTime(time);
+                      // handleTime(time);
                     }}
                     placeholder="Hours"
                   />
@@ -114,7 +126,7 @@ function ModalEdited({ text, variant, size, TodoCurrent, newTodo }) {
                   <Form.Control
                     onChange={(e) => {
                       setTime({ ...time, minutes: e.target.value });
-                      handleTime(time);
+                      // handleTime(time);
                     }}
                     placeholder="Minutes"
                   />
