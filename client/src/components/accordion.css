@@ -1,0 +1,16 @@
+.accordion-container {
+  position: relative;
+}
+
+.edit {
+  position: absolute;
+  right: 110px;
+  top: 7px;
+  z-index: 5;
+}
+.delete {
+  position: absolute;
+  right: 45px;
+  top: 7px;
+  z-index: 5;
+}

@@ -10,17 +10,17 @@ export const getAllToDoes = async () => {
     console.log(error);
   }
 };
-export const updateTodo = async (id, toDo) => {
+export const updateTodo = async (id, toDoDetail) => {
   try {
-    const toDo = await axios.patch(`${baseUrl}/${id}`, toDo);
+    const toDo = await axios.patch(`${baseUrl}/${id}`, toDoDetail);
     return toDo;
   } catch (error) {
     console.log(error);
   }
 };
-export const createTodo = async (toDo) => {
+export const createTodo = async (toDoDetail) => {
   try {
-    const toDo = await axios.post(baseUrl, toDo);
+    const toDo = await axios.post(baseUrl, toDoDetail);
     return toDo;
   } catch (error) {
     console.log(error);
