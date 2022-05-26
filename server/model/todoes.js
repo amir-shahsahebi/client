@@ -6,7 +6,7 @@ const ToDoesSchema = new mongoose.Schema({
   favorite: String,
   addedTime: String,
   finishTime: String,
-  status: String,
+  status: Number,
 });
 
 module.exports = mongoose.model("ToDoes", ToDoesSchema);

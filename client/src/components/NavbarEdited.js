@@ -13,8 +13,8 @@ const NavbarEdited = () => {
     title: "",
     task: "",
     favorite: "",
-    addedTime: "",
-    finishTime: "",
+    addedTime: null,
+    finishTime: null,
     status: "",
   };
   return (

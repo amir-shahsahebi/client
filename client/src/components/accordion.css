@@ -5,12 +5,24 @@
 .edit {
   position: absolute;
   right: 110px;
-  top: 7px;
+  top: 9px;
   z-index: 5;
 }
 .delete {
   position: absolute;
   right: 45px;
-  top: 7px;
+  top: 9px;
   z-index: 5;
+}
+.star {
+  position: absolute;
+  right: 145px;
+  top: 9px;
+  z-index: 5;
+}
+
+.date {
+  margin-top: 10px;
+  font-weight: 100;
+  font-size: small;
 }
