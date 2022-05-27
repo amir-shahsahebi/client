@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:5500/todoes/";
+// const baseUrl = "http://localhost:5500/todoes/";
+const baseUrl = "https://to-does.herokuapp.com/todoes/";
 
 export const getAllToDoes = async () => {
   try {
